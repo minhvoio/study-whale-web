@@ -10,6 +10,9 @@ import {
   TooltipTrigger
 } from '@/components/ui/tooltip'
 import { IconArrowElbow, IconFileUpload, IconPlus } from '@/components/ui/icons'
+import { AppDispatch } from '@/app/redux/store'
+import { useDispatch } from 'react-redux'
+import { setFileLink } from '@/app/redux/slicers/fileSlice'
 
 export interface PromptProps
   extends Pick<UseChatHelpers, 'input' | 'setInput'> {
@@ -25,6 +28,58 @@ export function PromptForm({
 }: PromptProps) {
   const { formRef, onKeyDown } = useEnterSubmit()
   const inputRef = React.useRef<HTMLTextAreaElement>(null)
+
+  const fileInputRef = React.useRef<HTMLInputElement>(null)
+
+  const fileUploadButton = document.getElementById('fileUploadButton')
+
+  const handleFileUploadClick = () => {
+    if (fileInputRef.current) {
+      fileUploadButton?.style.setProperty('background-color', '#E4F0FB')
+      fileUploadButton?.style.setProperty('color', '#2a5deb')
+      fileInputRef.current.click()
+    }
+  }
+
+  const dispatch = useDispatch<AppDispatch>()
+
+  const handleFileInputOnChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      fileUploadButton?.style.setProperty('background-color', '#2ecc71')
+      fileUploadButton?.style.setProperty('color', 'white')
+
+      const formData = new FormData()
+      formData.append('file', file)
+
+      // calculate the date and time 12 hours from now
+      // const expires = new Date()
+      // expires.setHours(expires.getHours() + 12)
+
+      // formData.append('expires', expires.toISOString()) // add expires field
+      // formData.append('autoDelete', 'true') // add autoDelete field
+
+      const response = await fetch('https://file.io', {
+        method: 'POST',
+        body: formData
+      })
+
+      if (response.ok) {
+        const jsonResponse = await response.json()
+        const fileLink = jsonResponse.link
+        dispatch(setFileLink('https://chat.excie.org/uploads/' + file.name))
+      } else {
+        console.error('Upload failed')
+      }
+    }
+  }
+
+  const handleButtonClickToHideInstructionScreen = () => {
+    const instructionScreen = document.getElementById('instructionScreen')
+    instructionScreen?.style.setProperty('display', 'none')
+  }
 
   React.useEffect(() => {
     if (inputRef.current) {
@@ -58,19 +113,27 @@ export function PromptForm({
         />
         <div className="absolute right-0 top-4 sm:right-4 space-x-3">
           <Button
-            type="submit"
+            type="button"
             size="icon"
-            // disabled={isLoading || input === ''}
+            id="fileUploadButton"
             style={{
               backgroundColor: '#E4F0FB',
               color: '#2a5deb',
               boxShadow: 'none'
             }}
+            onClick={handleFileUploadClick}
             className="rounded-full"
           >
             <IconFileUpload />
             <span className="sr-only">Send file</span>
           </Button>
+          <input
+            type="file"
+            style={{ display: 'none' }}
+            ref={fileInputRef}
+            onChange={handleFileInputOnChange}
+            accept=".xlsx, .xls, .csv"
+          />
 
           <Tooltip>
             <TooltipTrigger asChild>
@@ -80,6 +143,7 @@ export function PromptForm({
                 disabled={isLoading || input === ''}
                 style={{ backgroundColor: '#2a5deb' }}
                 className="rounded-full"
+                onClick={handleButtonClickToHideInstructionScreen}
               >
                 <IconArrowElbow />
                 <span className="sr-only">Send message</span>

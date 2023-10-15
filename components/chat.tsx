@@ -20,6 +20,7 @@ import { useState } from 'react'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { toast } from 'react-hot-toast'
+import { useAppSelector } from '@/app/redux/store'
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {
@@ -34,13 +35,18 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
   )
   const [previewTokenDialog, setPreviewTokenDialog] = useState(IS_PREVIEW)
   const [previewTokenInput, setPreviewTokenInput] = useState(previewToken ?? '')
+
+  const fileLink = useAppSelector(state => state.fileReducer.fileLink)
+  console.log(fileLink)
+
   const { messages, append, reload, stop, isLoading, input, setInput } =
     useChat({
       initialMessages,
       id,
       body: {
         id,
-        previewToken
+        previewToken,
+        fileLink
       },
       onResponse(response) {
         if (response.status === 401) {
@@ -57,7 +63,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
             <ChatScrollAnchor trackVisibility={isLoading} />
           </>
         ) : (
-          <EmptyScreen setInput={setInput} />
+          <EmptyScreen />
         )}
       </div>
       <ChatPanel

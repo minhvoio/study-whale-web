@@ -81,6 +81,54 @@
         "async": false
       }
     },
+    "(app-client)/./app/redux/provider.tsx": {
+      "*": {
+        "id": "(sc_client)/./app/redux/provider.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./components/providers.tsx": {
+      "*": {
+        "id": "(sc_client)/./components/providers.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./components/ui/icons.tsx": {
+      "*": {
+        "id": "(sc_client)/./components/ui/icons.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./components/ui/tooltip.tsx": {
+      "*": {
+        "id": "(sc_client)/./components/ui/tooltip.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./node_modules/next/dist/client/link.js": {
+      "*": {
+        "id": "(sc_client)/./node_modules/next/dist/esm/client/link.js",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./node_modules/react-hot-toast/dist/index.mjs": {
+      "*": {
+        "id": "(sc_client)/./node_modules/react-hot-toast/dist/index.mjs",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
     "(app-client)/./components/button-scroll-to-bottom.tsx": {
       "*": {
         "id": "(sc_client)/./components/button-scroll-to-bottom.tsx",
@@ -137,14 +185,6 @@
         "async": false
       }
     },
-    "(app-client)/./components/ui/icons.tsx": {
-      "*": {
-        "id": "(sc_client)/./components/ui/icons.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
     "(app-client)/./components/ui/separator.tsx": {
       "*": {
         "id": "(sc_client)/./components/ui/separator.tsx",
@@ -153,41 +193,9 @@
         "async": false
       }
     },
-    "(app-client)/./components/ui/tooltip.tsx": {
-      "*": {
-        "id": "(sc_client)/./components/ui/tooltip.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
     "(app-client)/./lib/hooks/use-copy-to-clipboard.tsx": {
       "*": {
         "id": "(sc_client)/./lib/hooks/use-copy-to-clipboard.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./node_modules/react-hot-toast/dist/index.mjs": {
-      "*": {
-        "id": "(sc_client)/./node_modules/react-hot-toast/dist/index.mjs",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./components/providers.tsx": {
-      "*": {
-        "id": "(sc_client)/./components/providers.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./node_modules/next/dist/client/link.js": {
-      "*": {
-        "id": "(sc_client)/./node_modules/next/dist/esm/client/link.js",
         "name": "*",
         "chunks": [],
         "async": false
@@ -355,6 +363,62 @@
       ],
       "async": false
     },
+    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/app/redux/provider.tsx": {
+      "id": "(app-client)/./app/redux/provider.tsx",
+      "name": "*",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/components/providers.tsx": {
+      "id": "(app-client)/./components/providers.tsx",
+      "name": "*",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/components/ui/icons.tsx": {
+      "id": "(app-client)/./components/ui/icons.tsx",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
+    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/components/ui/tooltip.tsx": {
+      "id": "(app-client)/./components/ui/tooltip.tsx",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
+    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/node_modules/next/dist/client/link.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "*",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/node_modules/next/dist/esm/client/link.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "*",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/node_modules/react-hot-toast/dist/index.mjs": {
+      "id": "(app-client)/./node_modules/react-hot-toast/dist/index.mjs",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
     "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/components/button-scroll-to-bottom.tsx": {
       "id": "(app-client)/./components/button-scroll-to-bottom.tsx",
       "name": "*",
@@ -411,27 +475,11 @@
       ],
       "async": false
     },
-    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/components/ui/icons.tsx": {
-      "id": "(app-client)/./components/ui/icons.tsx",
-      "name": "*",
-      "chunks": [
-        "app/layout:static/chunks/app/layout.js"
-      ],
-      "async": false
-    },
     "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/components/ui/separator.tsx": {
       "id": "(app-client)/./components/ui/separator.tsx",
       "name": "*",
       "chunks": [
         "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
-    },
-    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/components/ui/tooltip.tsx": {
-      "id": "(app-client)/./components/ui/tooltip.tsx",
-      "name": "*",
-      "chunks": [
-        "app/layout:static/chunks/app/layout.js"
       ],
       "async": false
     },
@@ -442,45 +490,9 @@
         "app/page:static/chunks/app/page.js"
       ],
       "async": false
-    },
-    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/node_modules/react-hot-toast/dist/index.mjs": {
-      "id": "(app-client)/./node_modules/react-hot-toast/dist/index.mjs",
-      "name": "*",
-      "chunks": [
-        "app/layout:static/chunks/app/layout.js"
-      ],
-      "async": false
-    },
-    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/components/providers.tsx": {
-      "id": "(app-client)/./components/providers.tsx",
-      "name": "*",
-      "chunks": [
-        "app/layout:static/chunks/app/layout.js"
-      ],
-      "async": false
-    },
-    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/node_modules/next/dist/client/link.js": {
-      "id": "(app-client)/./node_modules/next/dist/client/link.js",
-      "name": "*",
-      "chunks": [
-        "app/layout:static/chunks/app/layout.js"
-      ],
-      "async": false
-    },
-    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/node_modules/next/dist/esm/client/link.js": {
-      "id": "(app-client)/./node_modules/next/dist/client/link.js",
-      "name": "*",
-      "chunks": [
-        "app/layout:static/chunks/app/layout.js"
-      ],
-      "async": false
     }
   },
   "entryCSSFiles": {
-    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/app/page": {
-      "modules": [],
-      "files": []
-    },
     "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/app/layout": {
       "modules": [
         "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/app/globals.css",
@@ -490,6 +502,10 @@
       "files": [
         "static/css/app/layout.css"
       ]
+    },
+    "/Users/minhvo/1-GitHub/Business/Chat-Excie-NextJS/app/page": {
+      "modules": [],
+      "files": []
     }
   }
 }

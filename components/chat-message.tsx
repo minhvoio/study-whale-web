@@ -21,9 +21,7 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
       <div
         className={cn(
           'flex h-10 w-10 shrink-0 select-none items-center justify-center',
-          message.role === 'user'
-            ? 'bg-background rounded-md border shadow'
-            : ''
+          message.role === 'user' ? 'bg-background rounded-md border' : ''
         )}
       >
         {message.role === 'user' ? <IconUser /> : <IconExcieIconChat />}

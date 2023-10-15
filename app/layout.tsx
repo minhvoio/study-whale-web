@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Providers } from '@/components/providers'
 import { Header } from '@/components/header'
+import { ReduxProvider } from '@/app/redux/provider'
 
 export const metadata: Metadata = {
   title: {
@@ -42,16 +43,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <Toaster />
-        <Providers attribute="class" defaultTheme="system" enableSystem>
-          <div className="flex flex-col min-h-screen">
-            {/* @ts-ignore */}
-            <Header />
-            <main className="flex flex-col flex-1 bg-slate-100">
-              {children}
-            </main>
-          </div>
-          {/* <TailwindIndicator /> */}
-        </Providers>
+        <ReduxProvider>
+          <Providers attribute="class" defaultTheme="system" enableSystem>
+            <div className="flex flex-col min-h-screen">
+              {/* @ts-ignore */}
+              <Header />
+              <main className="flex flex-col flex-1 bg-slate-100">
+                {children}
+              </main>
+            </div>
+            {/* <TailwindIndicator /> */}
+          </Providers>
+        </ReduxProvider>
       </body>
     </html>
   )
