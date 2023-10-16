@@ -50,8 +50,8 @@ export function PromptForm({
       const formData = new FormData()
       formData.append('fileInput', file)
 
-      const fileIOLink = 'https://file.io'
-      const localLink = 'http://localhost:4000/uploadFile'
+      // const fileIOLink = 'https://file.io'
+      // const localLink = 'http://localhost:4000/uploadFile'
       const excieLink = 'https://s.excie.org/uploadFile'
 
       const response = await fetch(excieLink, {
