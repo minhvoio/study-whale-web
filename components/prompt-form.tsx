@@ -28,49 +28,41 @@ export function PromptForm({
 }: PromptProps) {
   const { formRef, onKeyDown } = useEnterSubmit()
   const inputRef = React.useRef<HTMLTextAreaElement>(null)
-
   const fileInputRef = React.useRef<HTMLInputElement>(null)
+  const [fileUploaded, setFileUploaded] = React.useState(false)
 
-  const fileUploadButton = document.getElementById('fileUploadButton')
+  const dispatch = useDispatch<AppDispatch>()
 
   const handleFileUploadClick = () => {
     if (fileInputRef.current) {
-      fileUploadButton?.style.setProperty('background-color', '#E4F0FB')
-      fileUploadButton?.style.setProperty('color', '#2a5deb')
+      setFileUploaded(false)
       fileInputRef.current.click()
     }
   }
-
-  const dispatch = useDispatch<AppDispatch>()
 
   const handleFileInputOnChange = async (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const file = e.target.files?.[0]
     if (file) {
-      fileUploadButton?.style.setProperty('background-color', '#2ecc71')
-      fileUploadButton?.style.setProperty('color', 'white')
+      setFileUploaded(true)
 
       const formData = new FormData()
       formData.append('fileInput', file)
 
-      // calculate the date and time 12 hours from now
       const fileIOLink = 'https://file.io'
-      const localLink = 'http://localhost:4000'
-      // const expires = new Date()
-      // expires.setHours(expires.getHours() + 12)
+      const localLink = 'http://localhost:4000/uploadFile'
+      const excieLink = 'https://s.excie.org/uploadFile'
 
-      // formData.append('expires', expires.toISOString()) // add expires field
-      // formData.append('autoDelete', 'true') // add autoDelete field
-
-      const response = await fetch(fileIOLink, {
+      const response = await fetch(excieLink, {
         method: 'POST',
         body: formData
       })
 
       if (response.ok) {
         const jsonResponse = await response.json()
-        const fileLink = jsonResponse.link
+        const fileLink = jsonResponse.fileLink
+        console.log(fileLink)
         dispatch(setFileLink(fileLink))
       } else {
         console.error('Upload failed')
@@ -118,11 +110,19 @@ export function PromptForm({
             type="button"
             size="icon"
             id="fileUploadButton"
-            style={{
-              backgroundColor: '#E4F0FB',
-              color: '#2a5deb',
-              boxShadow: 'none'
-            }}
+            style={
+              fileUploaded
+                ? {
+                    backgroundColor: '#2ecc71',
+                    color: '#fff',
+                    boxShadow: 'none'
+                  }
+                : {
+                    backgroundColor: '#E4F0FB',
+                    color: '#2a5deb',
+                    boxShadow: 'none'
+                  }
+            }
             onClick={handleFileUploadClick}
             className="rounded-full"
           >
