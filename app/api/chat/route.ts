@@ -12,6 +12,8 @@ export async function POST(req: Request) {
     fileLink: string
   }
 
+  console.log(fileLink)
+
   const response = await fetch('https://www.chatcsv.co/api/v1/chat', {
     method: 'POST',
     headers: {
@@ -22,10 +24,10 @@ export async function POST(req: Request) {
       messages,
       files: [
         // 'https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv'
-        // fileLink == ''
-        //   ? 'https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv'
-        //   : fileLink
-        'https://chat.excie.org/uploads/0-SampleData.xlsx'
+        fileLink == ''
+          ? 'https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv'
+          : fileLink
+        // 'https://chat.excie.org/uploads/0-SampleData.xlsx'
       ]
     })
   })

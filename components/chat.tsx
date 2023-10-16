@@ -37,7 +37,6 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
   const [previewTokenInput, setPreviewTokenInput] = useState(previewToken ?? '')
 
   const fileLink = useAppSelector(state => state.fileReducer.fileLink)
-  console.log(fileLink)
 
   const { messages, append, reload, stop, isLoading, input, setInput } =
     useChat({

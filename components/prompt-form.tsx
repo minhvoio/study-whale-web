@@ -52,16 +52,18 @@ export function PromptForm({
       fileUploadButton?.style.setProperty('color', 'white')
 
       const formData = new FormData()
-      formData.append('file', file)
+      formData.append('fileInput', file)
 
       // calculate the date and time 12 hours from now
+      const fileIOLink = 'https://file.io'
+      const localLink = 'http://localhost:4000'
       // const expires = new Date()
       // expires.setHours(expires.getHours() + 12)
 
       // formData.append('expires', expires.toISOString()) // add expires field
       // formData.append('autoDelete', 'true') // add autoDelete field
 
-      const response = await fetch('https://file.io', {
+      const response = await fetch(fileIOLink, {
         method: 'POST',
         body: formData
       })
@@ -69,7 +71,7 @@ export function PromptForm({
       if (response.ok) {
         const jsonResponse = await response.json()
         const fileLink = jsonResponse.link
-        dispatch(setFileLink('https://chat.excie.org/uploads/' + file.name))
+        dispatch(setFileLink(fileLink))
       } else {
         console.error('Upload failed')
       }
