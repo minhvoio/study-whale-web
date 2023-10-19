@@ -12,10 +12,10 @@ import { ReduxProvider } from '@/app/redux/provider'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Excie - Your AI Excel and Google Sheets Problem Solver',
-    template: `%s - Excie - Your AI Excel and Google Sheets Problem Solver`
+    default: 'Excie - Your AI-Powered Data Ally',
+    template: `%s - Excie - Your AI-Powered Data Ally`
   },
-  description: 'Your AI Excel and Google Sheets Problem Solver.',
+  description: 'Your AI-Powered Data Ally.',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
     { media: '(prefers-color-scheme: dark)', color: 'black' }
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <Toaster />
         <ReduxProvider>
-          <Providers attribute="class" defaultTheme="system" enableSystem>
+          <Providers attribute="class" forcedTheme="light">
             <div className="flex flex-col min-h-screen">
               {/* @ts-ignore */}
               <Header />
