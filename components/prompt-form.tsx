@@ -137,7 +137,6 @@ export function PromptForm({
             ref={fileInputRef}
             onChange={handleFileInputOnChange}
             accept=".xlsx, .xls, .csv"
-            maxSize={6 * 1024 * 1024}
           />
 
           <Tooltip>
