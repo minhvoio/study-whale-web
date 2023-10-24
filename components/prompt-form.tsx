@@ -45,27 +45,29 @@ export function PromptForm({
   ) => {
     const file = e.target.files?.[0]
     if (file) {
-      setFileUploaded(true)
+      if (file.size <= 6 * 1024 * 1024) {
+        setFileUploaded(true)
 
-      const formData = new FormData()
-      formData.append('fileInput', file)
+        const formData = new FormData()
+        formData.append('fileInput', file)
 
-      // const fileIOLink = 'https://file.io'
-      // const localLink = 'http://localhost:4000/uploadFile'
-      const excieLink = 'https://s.excie.org/uploadFile'
+        const excieLink = 'https://s.excie.org/uploadFile'
 
-      const response = await fetch(excieLink, {
-        method: 'POST',
-        body: formData
-      })
+        const response = await fetch(excieLink, {
+          method: 'POST',
+          body: formData
+        })
 
-      if (response.ok) {
-        const jsonResponse = await response.json()
-        const fileLink = jsonResponse.fileLink
-        console.log(fileLink)
-        dispatch(setFileLink(fileLink))
+        if (response.ok) {
+          const jsonResponse = await response.json()
+          const fileLink = jsonResponse.fileLink
+          console.log(fileLink)
+          dispatch(setFileLink(fileLink))
+        } else {
+          console.error('Upload failed')
+        }
       } else {
-        console.error('Upload failed')
+        console.error('File size exceeds the limit (6MB)')
       }
     }
   }
@@ -135,6 +137,7 @@ export function PromptForm({
             ref={fileInputRef}
             onChange={handleFileInputOnChange}
             accept=".xlsx, .xls, .csv"
+            maxSize={6 * 1024 * 1024}
           />
 
           <Tooltip>
