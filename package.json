@@ -5,9 +5,9 @@
   "description": "Chat with Excie AI - Powered by ChatGPT 4.0",
   "homepage": "https://chat.excie.org",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "preview": "next build && next start",

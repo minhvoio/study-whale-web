@@ -15,7 +15,8 @@ export const metadata: Metadata = {
     default: 'Excie - Your AI-Powered Data Ally',
     template: `%s - Excie - Your AI-Powered Data Ally`
   },
-  description: 'Your AI-Powered Data Ally.',
+  description:
+    'Bạn mất hàng giờ phân tích dữ liệu? Giờ đây chỉ cần vài giây Excie sẽ giúp bạn phân tích, trực quan hóa, thậm chí gợi ý tối ưu kết quả công việc cho bạn!',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
     { media: '(prefers-color-scheme: dark)', color: 'black' }
