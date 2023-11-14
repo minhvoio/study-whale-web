@@ -2,7 +2,7 @@
   "name": "chat-excie",
   "version": "0.1.0",
   "private": true,
-  "description": "Chat with Excie AI - Powered by ChatGPT 4.0",
+  "description": "Bạn mất hàng giờ phân tích dữ liệu? Giờ đây chỉ cần vài giây Excie sẽ giúp bạn phân tích, trực quan hóa, thậm chí gợi ý tối ưu kết quả công việc cho bạn!",
   "homepage": "https://chat.excie.org",
   "scripts": {
     "dev": "next dev",
