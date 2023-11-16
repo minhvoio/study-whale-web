@@ -1,31 +1,19 @@
-import axios, { AxiosResponse } from 'axios'
-import FormData from 'form-data'
-
-export async function POST(request: Request): Promise<Response> {
+export async function POST(request: Request) {
   const formData = await request.formData()
-  const file = formData.get('fileInput') as File
-  let fileName = file.name
-
-  // Create new form data and append the file
-  let uploadData = new FormData()
-  uploadData.append('file', file, fileName)
 
   // Send POST request to 0x0.st
-  let uploadResponse: AxiosResponse = await axios.post(
-    'https://0x0.st',
-    uploadData,
-    {
-      headers: uploadData.getHeaders()
-    }
-  )
+  let uploadResponse = await fetch('https://0x0.st', {
+    method: 'POST',
+    body: formData
+  })
 
   // Get the text response from 0x0.st
-  let uploadResult = uploadResponse.data
+  let uploadResult = await uploadResponse.text()
 
   // Check if the upload was successful
-  if (uploadResponse.status === 200) {
+  if (uploadResponse.ok) {
     // Return the file link in the response
-    const body = { fileName: fileName, fileLink: uploadResult.trim() }
+    const body = { fileLink: uploadResult.trim() }
     const headers = { 'Content-Type': 'application/json' }
     return new Response(JSON.stringify(body), { headers })
   } else {
