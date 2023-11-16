@@ -1,4 +1,7 @@
 //@ts-nocheck
+import axios from 'axios'
+import FormData from 'form-data'
+
 export async function POST(request: Request) {
   const formData = await request.formData()
   const file = formData.get('fileInput')
@@ -9,16 +12,15 @@ export async function POST(request: Request) {
   uploadData.append('file', file, fileName)
 
   // Send POST request to 0x0.st
-  let uploadResponse = await fetch('https://0x0.st', {
-    method: 'POST',
-    body: uploadData
+  let uploadResponse = await axios.post('https://0x0.st', uploadData, {
+    headers: uploadData.getHeaders()
   })
 
   // Get the text response from 0x0.st
-  let uploadResult = await uploadResponse.text()
+  let uploadResult = uploadResponse.data
 
   // Check if the upload was successful
-  if (uploadResponse.ok) {
+  if (uploadResponse.status === 200) {
     // Return the file link in the response
     const body = { fileName: fileName, fileLink: uploadResult.trim() }
     const headers = { 'Content-Type': 'application/json' }
