@@ -108,7 +108,7 @@ export function PromptForm({
           className="min-h-[60px] w-full resize-none bg-transparent pr-14 py-[1.3rem] focus-within:outline-none sm:text-sm"
         />
         <div className="absolute right-0 top-4 sm:right-4 space-x-3">
-          <Button
+          {/* <Button
             type="button"
             size="icon"
             id="fileUploadButton"
@@ -137,7 +137,7 @@ export function PromptForm({
             ref={fileInputRef}
             onChange={handleFileInputOnChange}
             accept=".xlsx, .xls, .csv"
-          />
+          /> */}
 
           <Tooltip>
             <TooltipTrigger asChild>
