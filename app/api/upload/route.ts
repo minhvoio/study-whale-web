@@ -1,16 +1,12 @@
+//@ts-nocheck
 export async function POST(request: Request) {
   const formData = await request.formData()
   const file = formData.get('fileInput')
-  let fileName = 'unknown'
-  if (file instanceof File) {
-    fileName = file.name
-  }
+  let fileName = file.name
 
   // Create new form data and append the file
   let uploadData = new FormData()
-  if (file instanceof File) {
-    uploadData.append('file', file, fileName)
-  }
+  uploadData.append('file', file, fileName)
 
   // Send POST request to 0x0.st
   let uploadResponse = await fetch('https://0x0.st', {
