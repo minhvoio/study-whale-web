@@ -26,6 +26,8 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.0.6",
     "@reduxjs/toolkit": "^1.9.7",
+    "@types/form-data": "^2.5.0",
+    "@types/node-fetch": "^2.6.9",
     "@vercel/analytics": "^1.0.0",
     "@vercel/kv": "^0.2.1",
     "@vercel/og": "^0.5.7",

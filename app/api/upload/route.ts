@@ -1,10 +1,9 @@
-//@ts-nocheck
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import FormData from 'form-data'
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<Response> {
   const formData = await request.formData()
-  const file = formData.get('fileInput')
+  const file = formData.get('fileInput') as File
   let fileName = file.name
 
   // Create new form data and append the file
@@ -12,9 +11,13 @@ export async function POST(request: Request) {
   uploadData.append('file', file, fileName)
 
   // Send POST request to 0x0.st
-  let uploadResponse = await axios.post('https://0x0.st', uploadData, {
-    headers: uploadData.getHeaders()
-  })
+  let uploadResponse: AxiosResponse = await axios.post(
+    'https://0x0.st',
+    uploadData,
+    {
+      headers: uploadData.getHeaders()
+    }
+  )
 
   // Get the text response from 0x0.st
   let uploadResult = uploadResponse.data
