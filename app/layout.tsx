@@ -12,8 +12,8 @@ import { ReduxProvider } from '@/app/redux/provider'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Excie - Your AI-Powered Data Ally',
-    template: `%s - Excie - Your AI-Powered Data Ally`
+    default: 'Excie - AI Phân Tích Dữ Liệu Tự Động',
+    template: `%s - Excie - AI Phân Tích Dữ Liệu Tự Động`
   },
   description:
     'Bạn mất hàng giờ phân tích dữ liệu? Giờ đây chỉ cần vài giây Excie sẽ giúp bạn phân tích, trực quan hóa, thậm chí gợi ý tối ưu kết quả công việc cho bạn!',
