@@ -50,6 +50,8 @@ export function PromptForm({
 
         const formData = new FormData()
         formData.append('file', file, file.name)
+        // console.log('formData: ', formData)
+        console.log('filename: ', file.name)
 
         const response = await fetch('/api/upload', {
           method: 'POST',
@@ -59,7 +61,7 @@ export function PromptForm({
         if (response.ok) {
           const jsonResponse = await response.json()
           const fileLink = jsonResponse.fileLink
-          // console.log('fileLink: ', fileLink)
+          console.log('fileLink: ', fileLink)
           dispatch(setFileLink(fileLink))
         } else {
           console.error('Upload failed')
@@ -106,7 +108,7 @@ export function PromptForm({
           className="min-h-[60px] w-full resize-none bg-transparent pr-14 py-[1.3rem] focus-within:outline-none sm:text-sm"
         />
         <div className="absolute right-0 top-4 sm:right-4 space-x-3">
-          {/* <Button
+          <Button
             type="button"
             size="icon"
             id="fileUploadButton"
@@ -135,7 +137,7 @@ export function PromptForm({
             ref={fileInputRef}
             onChange={handleFileInputOnChange}
             accept=".xlsx, .xls, .csv"
-          /> */}
+          />
 
           <Tooltip>
             <TooltipTrigger asChild>
