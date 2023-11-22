@@ -50,8 +50,9 @@ export function PromptForm({
 
         const formData = new FormData()
         formData.append('file', file, file.name)
+
         // console.log('formData: ', formData)
-        console.log('filename: ', file.name)
+        // console.log('filename: ', file.name)
 
         const response = await fetch('/api/upload', {
           method: 'POST',
@@ -61,7 +62,9 @@ export function PromptForm({
         if (response.ok) {
           const jsonResponse = await response.json()
           const fileLink = jsonResponse.fileLink
-          console.log('fileLink: ', fileLink)
+
+          // console.log('fileLink: ', fileLink)
+
           dispatch(setFileLink(fileLink))
         } else {
           console.error('Upload failed')
