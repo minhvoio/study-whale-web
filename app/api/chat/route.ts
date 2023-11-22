@@ -21,9 +21,10 @@ export async function POST(req: Request) {
       model: 'gpt-4-0613',
       messages,
       files: [
-        fileLink == ''
-          ? 'https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv'
-          : fileLink
+        // fileLink == ''
+        //   ? 'https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv'
+        //   :
+        fileLink
       ]
     })
   })
