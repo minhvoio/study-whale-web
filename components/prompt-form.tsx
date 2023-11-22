@@ -43,35 +43,32 @@ export function PromptForm({
   const handleFileInputOnChange = async (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    try {
-      const file = e.target.files?.[0]
-      if (file) {
-        if (file.size <= 6 * 1024 * 1024) {
-          setFileUploaded(true)
+    const file = e.target.files?.[0]
+    if (file) {
+      if (file.size <= 6 * 1024 * 1024) {
+        setFileUploaded(true)
 
-          const formData = new FormData()
-          formData.append('file', file, file.name)
-          console.log('filename: ', file.name)
+        const formData = new FormData()
+        formData.append('file', file, file.name)
+        // console.log('formData: ', formData)
+        console.log('filename: ', file.name)
 
-          const response = await fetch('/api/upload', {
-            method: 'POST',
-            body: formData
-          })
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData
+        })
 
-          if (response.ok) {
-            const jsonResponse = await response.json()
-            const fileLink = jsonResponse.fileLink
-            console.log('fileLink: ', fileLink)
-            dispatch(setFileLink(fileLink))
-          } else {
-            console.error('Upload failed')
-          }
+        if (response.ok) {
+          const jsonResponse = await response.json()
+          const fileLink = jsonResponse.fileLink
+          console.log('fileLink: ', fileLink)
+          dispatch(setFileLink(fileLink))
         } else {
-          console.error('File size exceeds the limit (6MB)')
+          console.error('Upload failed')
         }
+      } else {
+        console.error('File size exceeds the limit (6MB)')
       }
-    } catch (error) {
-      console.error('An error occurred during file upload: ', error)
     }
   }
 

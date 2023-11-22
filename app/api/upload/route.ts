@@ -10,14 +10,22 @@ export async function POST(request: Request) {
   // Get the text response from 0x0.st
   let uploadResult = await uploadResponse.text()
 
+  // Prepare the headers for the response
+  const headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, DELETE',
+    'Access-Control-Allow-Headers':
+      'Origin, X-Requested-With, Content-Type, Accept'
+  }
+
   // Check if the upload was successful
   if (uploadResponse.ok) {
     // Return the file link in the response
     const body = { fileLink: uploadResult.trim() }
-    const headers = { 'Content-Type': 'application/json' }
     return new Response(JSON.stringify(body), { headers })
   } else {
     // Return an error message if the upload failed
-    return new Response('File upload failed', { status: 500 })
+    return new Response('File upload failed', { status: 500, headers })
   }
 }
