@@ -2,7 +2,6 @@ import axios from 'axios'
 
 export async function POST(request: Request) {
   const formData = await request.formData()
-  console.log('formData', formData)
 
   // Send POST request to transfer.sh
   let uploadResponse
@@ -14,7 +13,6 @@ export async function POST(request: Request) {
 
   // Get the text response from transfer.sh
   let uploadResult = uploadResponse?.data
-  console.log('uploadResult', uploadResult)
 
   // Prepare the headers for the response
   const headers = {
@@ -28,7 +26,6 @@ export async function POST(request: Request) {
   // Check if the upload was successful
   if (uploadResponse && uploadResponse.status === 200) {
     // Return the file link in the response
-    console.log('uploadResult.trim()', uploadResult.trim())
     const body = { fileLink: uploadResult.trim() }
     return new Response(JSON.stringify(body), { headers })
   } else {
