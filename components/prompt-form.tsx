@@ -41,9 +41,7 @@ export function PromptForm({
     }
   }
 
-  const handleFileInputOnChange = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleFileInputOnChange = async (e: any) => {
     const file = e.target.files?.[0]
     if (file) {
       if (file.size <= 6 * 1024 * 1024) {
@@ -52,8 +50,8 @@ export function PromptForm({
         const formData = new FormData()
         formData.append('file', file, file.name)
 
-        // console.log('formData: ', formData)
-        // console.log('filename: ', file.name)
+        console.log('formData: ', formData)
+        console.log('filename: ', file.name)
 
         try {
           const response = await axios.post('/api/upload', formData)
