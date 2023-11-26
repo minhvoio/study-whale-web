@@ -9,7 +9,7 @@ export async function POST(request: Request) {
   try {
     uploadResponse = await axios.post('https://0x0.st', formData)
   } catch (error) {
-    console.error('Upload failed')
+    console.error('Upload failed: ', error)
   }
 
   // Get the text response from 0x0.st
