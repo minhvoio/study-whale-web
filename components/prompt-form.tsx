@@ -60,7 +60,7 @@ export function PromptForm({
 
           const fileLink = response.data.fileLink
 
-          // console.log('fileLink: ', fileLink)
+          console.log('fileLink: ', fileLink)
 
           dispatch(setFileLink(fileLink))
         } catch (error) {
