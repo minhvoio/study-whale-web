@@ -72,6 +72,37 @@ export function PromptForm({
     }
   }
 
+  const handleFileInputOnChange2 = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      if (file.size <= 6 * 1024 * 1024) {
+        setFileUploaded(true)
+
+        const formData = new FormData()
+        formData.append('file', file, file.name)
+
+        console.log('formData: ', formData)
+        console.log('filename: ', file.name)
+
+        try {
+          const response = await axios.post('/api/upload2', formData)
+
+          const fileLink = response.data.fileLink
+
+          console.log('fileLink: ', fileLink)
+
+          dispatch(setFileLink(fileLink))
+        } catch (error) {
+          console.error('Upload failed: ', error as Error)
+        }
+      } else {
+        console.error('File size exceeds the limit (6MB)')
+      }
+    }
+  }
+
   const handleButtonClickToHideInstructionScreen = () => {
     const instructionScreen = document.getElementById('instructionScreen')
     instructionScreen?.style.setProperty('display', 'none')
@@ -135,7 +166,7 @@ export function PromptForm({
             type="file"
             style={{ display: 'none' }}
             ref={fileInputRef}
-            onChange={handleFileInputOnChange}
+            onChange={handleFileInputOnChange2}
             accept=".xlsx, .xls, .csv"
           />
 
