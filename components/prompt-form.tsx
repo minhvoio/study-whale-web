@@ -41,7 +41,9 @@ export function PromptForm({
     }
   }
 
-  const handleFileInputOnChange = async (e: any) => {
+  const handleFileInputOnChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = e.target.files?.[0]
     if (file) {
       if (file.size <= 6 * 1024 * 1024) {
@@ -62,7 +64,7 @@ export function PromptForm({
 
           dispatch(setFileLink(fileLink))
         } catch (error) {
-          console.error('Upload failed')
+          console.error('Upload failed: ', error as Error)
         }
       } else {
         console.error('File size exceeds the limit (6MB)')
