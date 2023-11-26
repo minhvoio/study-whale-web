@@ -13,6 +13,7 @@ import { IconArrowElbow, IconFileUpload, IconPlus } from '@/components/ui/icons'
 import { AppDispatch } from '@/app/redux/store'
 import { useDispatch } from 'react-redux'
 import { setFileLink } from '@/app/redux/slicers/fileSlice'
+import axios from 'axios'
 
 export interface PromptProps
   extends Pick<UseChatHelpers, 'input' | 'setInput'> {
@@ -54,19 +55,15 @@ export function PromptForm({
         // console.log('formData: ', formData)
         // console.log('filename: ', file.name)
 
-        const response = await fetch('/api/upload', {
-          method: 'POST',
-          body: formData
-        })
+        try {
+          const response = await axios.post('/api/upload', formData)
 
-        if (response.ok) {
-          const jsonResponse = await response.json()
-          const fileLink = jsonResponse.fileLink
+          const fileLink = response.data.fileLink
 
           // console.log('fileLink: ', fileLink)
 
           dispatch(setFileLink(fileLink))
-        } else {
+        } catch (error) {
           console.error('Upload failed')
         }
       } else {

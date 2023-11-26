@@ -1,14 +1,18 @@
+import axios from 'axios'
+
 export async function POST(request: Request) {
   const formData = await request.formData()
 
   // Send POST request to 0x0.st
-  let uploadResponse = await fetch('https://0x0.st', {
-    method: 'POST',
-    body: formData
-  })
+  let uploadResponse
+  try {
+    uploadResponse = await axios.post('https://0x0.st', formData)
+  } catch (error) {
+    console.error('Upload failed')
+  }
 
   // Get the text response from 0x0.st
-  let uploadResult = await uploadResponse.text()
+  let uploadResult = uploadResponse?.data
 
   // Prepare the headers for the response
   const headers = {
@@ -20,7 +24,7 @@ export async function POST(request: Request) {
   }
 
   // Check if the upload was successful
-  if (uploadResponse.ok) {
+  if (uploadResponse && uploadResponse.status === 200) {
     // Return the file link in the response
     const body = { fileLink: uploadResult.trim() }
     return new Response(JSON.stringify(body), { headers })
