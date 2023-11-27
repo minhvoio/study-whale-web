@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 import { Toaster } from 'react-hot-toast'
-
+import Head from 'next/head'
 import '@/app/globals.css'
 import { fontMono, fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
@@ -35,7 +35,12 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="nLWL5HLR_pRPoOvsjLMWL80jvTuZkfGWINUcbIvYP9k"
+        />
+      </Head>
       <body
         className={cn(
           'font-sans antialiased',
