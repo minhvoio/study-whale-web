@@ -9,6 +9,7 @@ import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Providers } from '@/components/providers'
 import { Header } from '@/components/header'
 import { ReduxProvider } from '@/app/redux/provider'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: {
@@ -40,6 +41,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
           name="google-site-verification"
           content="nLWL5HLR_pRPoOvsjLMWL80jvTuZkfGWINUcbIvYP9k"
         />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-G0X8SZ83XE" />
+        <Script id="google-analytics">
+          {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G0X8SZ83XE');
+    `}
+        </Script>
       </Head>
       <body
         className={cn(
