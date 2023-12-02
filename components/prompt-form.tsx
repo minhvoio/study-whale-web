@@ -164,7 +164,7 @@ export function PromptForm({
             style={{ display: 'none' }}
             ref={fileInputRef}
             onChange={handleFileInputOnChange2}
-            accept=".xlsx, .xls, .csv"
+            accept=".xlsx, .csv"
           />
 
           <Tooltip>
