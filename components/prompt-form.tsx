@@ -50,22 +50,57 @@ export function PromptForm({
         setFileUploaded(true)
 
         const formData = new FormData()
-        formData.append('file', file, file.name)
+        // formData.append('fileInput', file)
 
-        console.log('formData: ', formData)
-        console.log('filename: ', file.name)
+        // console.log('formData: ', formData)
+        // console.log('filename: ', file.name)
 
         try {
           const response = await axios.post('/api/upload', formData)
 
           const fileLink = response.data.fileLink
 
-          console.log('fileLink: ', fileLink)
+          // console.log('fileLink: ', fileLink)
 
           dispatch(setFileLink(fileLink))
         } catch (error) {
           console.error('Upload failed: ', error as Error)
         }
+      } else {
+        console.error('File size exceeds the limit (6MB)')
+      }
+    }
+  }
+
+  const handleFileInputOnChange3 = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      if (file.size <= 6 * 1024 * 1024) {
+        setFileUploaded(true)
+
+        const formData = new FormData()
+        formData.append('fileInput', file)
+
+        console.log('formData: ', formData)
+        // console.log('filename: ', file.name)
+
+        let config = {
+          method: 'post',
+          maxBodyLength: Infinity,
+          url: 'https://s.gptcarrot.com/uploadFile',
+          data: formData
+        }
+
+        axios
+          .request(config)
+          .then(response => {
+            console.log(JSON.stringify(response.data))
+          })
+          .catch(error => {
+            console.log(error)
+          })
       } else {
         console.error('File size exceeds the limit (6MB)')
       }
@@ -163,7 +198,7 @@ export function PromptForm({
             type="file"
             style={{ display: 'none' }}
             ref={fileInputRef}
-            onChange={handleFileInputOnChange2}
+            onChange={handleFileInputOnChange}
             accept=".xlsx, .csv"
           />
 
