@@ -50,10 +50,10 @@ export function PromptForm({
         setFileUploaded(true)
 
         const formData = new FormData()
-        // formData.append('fileInput', file)
+        formData.append('fileInput', file)
 
-        // console.log('formData: ', formData)
-        console.log('filename: ', file.name)
+        console.log('formData: ', formData)
+        // console.log('filename: ', file.name)
 
         try {
           const response = await axios.post('/api/upload', formData)

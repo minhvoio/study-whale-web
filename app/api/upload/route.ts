@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export async function POST(request: Request) {
   const formData = await request.formData()
+  console.log('formData', formData)
 
   let uploadResponse
   try {
