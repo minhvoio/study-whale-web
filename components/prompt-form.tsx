@@ -53,14 +53,14 @@ export function PromptForm({
         // formData.append('fileInput', file)
 
         // console.log('formData: ', formData)
-        // console.log('filename: ', file.name)
+        console.log('filename: ', file.name)
 
         try {
           const response = await axios.post('/api/upload', formData)
 
           const fileLink = response.data.fileLink
 
-          // console.log('fileLink: ', fileLink)
+          console.log('fileLink: ', fileLink)
 
           dispatch(setFileLink(fileLink))
         } catch (error) {
