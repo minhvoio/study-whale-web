@@ -59,17 +59,16 @@ export function PromptForm({
           onChange={e => setInput(e.target.value)}
           placeholder="Message Whaly..."
           spellCheck={false}
-          className="min-h-[60px] w-full resize-none bg-transparent pr-14 py-[1.3rem] focus-within:outline-none sm:text-sm"
+          className="min-h-[40px] w-full resize-none bg-transparent pr-14 py-[0.5rem] focus-within:outline-none sm:text-sm flex items-center"
         />
-        <div className="absolute right-0 top-4 sm:right-4 space-x-3">
+        <div className="absolute right-0 top-1 sm:right-4 space-x-3">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
                 type="submit"
                 size="icon"
                 disabled={isLoading || input === ''}
-                style={{ backgroundColor: '#4e87c1' }}
-                className="rounded-full"
+                className="rounded-full bg-brand"
                 onClick={handleButtonClickToHideInstructionScreen}
               >
                 <IconArrowElbow />

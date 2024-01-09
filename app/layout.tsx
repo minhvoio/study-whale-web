@@ -64,8 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <Providers attribute="class" forcedTheme="light">
             <div className="flex flex-col min-h-screen">
               {/* @ts-ignore */}
-
-              <main className="flex flex-col flex-1 bg-slate-100">
+              <main className="flex flex-col flex-1 bg-slate-50">
                 {children}
               </main>
             </div>

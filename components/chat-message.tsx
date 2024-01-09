@@ -16,7 +16,7 @@ export interface ChatMessageProps {
 export function ChatMessage({ message, ...props }: ChatMessageProps) {
   return (
     <div
-      className={cn('group relative mb-4 flex items-start md:-ml-12')}
+      className={cn('group relative mb-2 flex items-start md:-ml-12')}
       {...props}
     >
       <div
@@ -37,13 +37,13 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
           />
         )}
       </div>
-      <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1">
+      <div className="ml-4 flex-1 overflow-hidden px-1">
         <MemoizedReactMarkdown
           className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0"
           remarkPlugins={[remarkGfm, remarkMath]}
           components={{
             p({ children }) {
-              return <p className="mb-2 last:mb-0">{children}</p>
+              return <p className="last:mb-0">{children}</p>
             },
             code({ node, inline, className, children, ...props }) {
               if (children.length) {
