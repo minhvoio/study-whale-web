@@ -13,11 +13,11 @@ import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Excie - AI Phân Tích Dữ Liệu Tự Động',
-    template: `%s - Excie - AI Phân Tích Dữ Liệu Tự Động`
+    default: 'Study Whale - Best Study Tools',
+    template: `%s - Study Whale - Best Study Tools`
   },
   description:
-    'Bạn mất hàng giờ phân tích dữ liệu? Giờ đây chỉ cần vài giây Excie sẽ giúp bạn phân tích, trực quan hóa, thậm chí gợi ý tối ưu kết quả công việc cho bạn!',
+    'GPA calculator, Study AI Helper, Pomodoro and more. Study Whale is the best study tool for students.',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
     { media: '(prefers-color-scheme: dark)', color: 'black' }
@@ -36,7 +36,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <Head>
+      {/* <Head>
         <meta
           name="google-site-verification"
           content="nLWL5HLR_pRPoOvsjLMWL80jvTuZkfGWINUcbIvYP9k"
@@ -51,7 +51,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       gtag('config', 'G-G0X8SZ83XE');
     `}
         </Script>
-      </Head>
+      </Head> */}
       <body
         className={cn(
           'font-sans antialiased',
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <Providers attribute="class" forcedTheme="light">
             <div className="flex flex-col min-h-screen">
               {/* @ts-ignore */}
-              <Header />
+
               <main className="flex flex-col flex-1 bg-slate-100">
                 {children}
               </main>

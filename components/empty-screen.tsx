@@ -1,7 +1,8 @@
-import InstructionImg from './instruction'
 import Image from 'next/image'
-import instruction from '@/public/instruction.png'
-import { Button, buttonVariants } from './ui/button'
+import instruction from '@/public/instruction.jpg'
+import { Button } from './ui/button'
+import { fontDisplay } from '@/lib/fonts'
+import { cn } from '@/lib/utils'
 
 export function EmptyScreen() {
   return (
@@ -9,25 +10,13 @@ export function EmptyScreen() {
       <div className="rounded-lg border bg-background p-6">
         <Image
           src={instruction}
-          width={1920}
-          height={1080}
-          alt="Instruction for using the chat"
+          width={512}
+          height={512}
+          className="w-1/4 rounded-full self-center m-auto"
+          alt="How can I help you today?"
         />
-        <div className="flex justify-center">
-          <a
-            href="https://drive.google.com/file/d/1FGrhKZ5idhcdztgDYUW-OwF9Uu2WQdGB/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              style={{
-                backgroundColor: '#2a5deb',
-                marginTop: 24
-              }}
-            >
-              Click để xem video hướng dẫn
-            </Button>
-          </a>
+        <div className="flex justify-center pt-4">
+          <p className={'text-2xl'}>How can I help you today?</p>
         </div>
       </div>
     </div>

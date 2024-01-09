@@ -6,10 +6,8 @@ export const runtime = 'edge'
 
 export async function POST(req: Request) {
   const json = await req.json()
-  // console.log(json)
-  const { messages, fileLink } = json as {
+  const { messages } = json as {
     messages: Message[]
-    fileLink: string
   }
 
   const response = await fetch('https://www.chatcsv.co/api/v1/chat', {
@@ -21,9 +19,7 @@ export async function POST(req: Request) {
       model: 'gpt-4-0613',
       messages,
       files: [
-        fileLink == ''
-          ? 'https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv'
-          : fileLink
+        'https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv'
       ]
     })
   })

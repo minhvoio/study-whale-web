@@ -9,11 +9,7 @@ import {
   TooltipContent,
   TooltipTrigger
 } from '@/components/ui/tooltip'
-import { IconArrowElbow, IconFileUpload, IconPlus } from '@/components/ui/icons'
-import { AppDispatch } from '@/app/redux/store'
-import { useDispatch } from 'react-redux'
-import { setFileLink } from '@/app/redux/slicers/fileSlice'
-import axios from 'axios'
+import { IconArrowElbow } from '@/components/ui/icons'
 
 export interface PromptProps
   extends Pick<UseChatHelpers, 'input' | 'setInput'> {
@@ -29,111 +25,6 @@ export function PromptForm({
 }: PromptProps) {
   const { formRef, onKeyDown } = useEnterSubmit()
   const inputRef = React.useRef<HTMLTextAreaElement>(null)
-  const fileInputRef = React.useRef<HTMLInputElement>(null)
-  const [fileUploaded, setFileUploaded] = React.useState(false)
-
-  const dispatch = useDispatch<AppDispatch>()
-
-  const handleFileUploadClick = () => {
-    if (fileInputRef.current) {
-      setFileUploaded(false)
-      fileInputRef.current.click()
-    }
-  }
-
-  const handleFileInputOnChange = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      if (file.size <= 6 * 1024 * 1024) {
-        setFileUploaded(true)
-
-        const formData = new FormData()
-        formData.append('fileInput', file)
-
-        console.log('formData: ', formData)
-        // console.log('filename: ', file.name)
-
-        try {
-          const response = await axios.post('/api/upload', formData)
-
-          const fileLink = response.data.fileLink
-
-          console.log('fileLink: ', fileLink)
-
-          dispatch(setFileLink(fileLink))
-        } catch (error) {
-          console.error('Upload failed: ', error as Error)
-        }
-      } else {
-        console.error('File size exceeds the limit (6MB)')
-      }
-    }
-  }
-
-  const handleFileInputOnChange3 = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      if (file.size <= 6 * 1024 * 1024) {
-        setFileUploaded(true)
-
-        const formData = new FormData()
-        formData.append('fileInput', file)
-
-        console.log('formData: ', formData)
-        // console.log('filename: ', file.name)
-
-        let config = {
-          method: 'post',
-          maxBodyLength: Infinity,
-          url: 'https://s.gptcarrot.com/uploadFile',
-          data: formData
-        }
-
-        axios
-          .request(config)
-          .then(response => {
-            console.log(JSON.stringify(response.data))
-          })
-          .catch(error => {
-            console.log(error)
-          })
-      } else {
-        console.error('File size exceeds the limit (6MB)')
-      }
-    }
-  }
-
-  const handleFileInputOnChange2 = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      if (file.size <= 6 * 1024 * 1024) {
-        setFileUploaded(true)
-
-        const formData = new FormData()
-        formData.append('file', file, file.name)
-
-        try {
-          const response = await axios.post('/api/upload2', formData)
-
-          const fileLink = response.data.fileLink
-
-          // console.log('fileLink: ', fileLink)
-
-          dispatch(setFileLink(fileLink))
-        } catch (error) {
-          console.error('Upload failed: ', error as Error)
-        }
-      } else {
-        console.error('File size exceeds the limit (6MB)')
-      }
-    }
-  }
 
   const handleButtonClickToHideInstructionScreen = () => {
     const instructionScreen = document.getElementById('instructionScreen')
@@ -166,49 +57,18 @@ export function PromptForm({
           rows={1}
           value={input}
           onChange={e => setInput(e.target.value)}
-          placeholder="To get the best answer, please ask in English."
+          placeholder="Message Whaly..."
           spellCheck={false}
           className="min-h-[60px] w-full resize-none bg-transparent pr-14 py-[1.3rem] focus-within:outline-none sm:text-sm"
         />
         <div className="absolute right-0 top-4 sm:right-4 space-x-3">
-          <Button
-            type="button"
-            size="icon"
-            id="fileUploadButton"
-            style={
-              fileUploaded
-                ? {
-                    backgroundColor: '#2ecc71',
-                    color: '#fff',
-                    boxShadow: 'none'
-                  }
-                : {
-                    backgroundColor: '#E4F0FB',
-                    color: '#2a5deb',
-                    boxShadow: 'none'
-                  }
-            }
-            onClick={handleFileUploadClick}
-            className="rounded-full"
-          >
-            <IconFileUpload />
-            <span className="sr-only">Send file</span>
-          </Button>
-          <input
-            type="file"
-            style={{ display: 'none' }}
-            ref={fileInputRef}
-            onChange={handleFileInputOnChange}
-            accept=".xlsx, .csv"
-          />
-
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
                 type="submit"
                 size="icon"
                 disabled={isLoading || input === ''}
-                style={{ backgroundColor: '#2a5deb' }}
+                style={{ backgroundColor: '#4e87c1' }}
                 className="rounded-full"
                 onClick={handleButtonClickToHideInstructionScreen}
               >
